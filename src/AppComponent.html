@@ -1,0 +1,9 @@
+<div id="">
+    <div class="sign" *ngFor="#number of [] | range:100, #i = index">{{ i }}</div>
+</div>
+<div *ngFor="#item1 of MySchedule.Schedule, #i = index">
+    <div *ngFor="#chara of MySchedule.ConvertToArray(i)"  class="color--lime sign" >
+        <img src="images/green.png" *ngIf="chara > 0" />
+        <img src="images/red.png" *ngIf="chara == 0" />
+    </div>
+</div>
