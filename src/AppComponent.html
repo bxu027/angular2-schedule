@@ -1,9 +1,16 @@
-<div id="">
-    <div class="sign" *ngFor="#number of [] | range:100, #i = index">{{ i }}</div>
-</div>
-<div *ngFor="#item1 of MySchedule.Schedule, #i = index">
-    <div *ngFor="#chara of MySchedule.ConvertToArray(i)"  class="color--lime sign" >
-        <img src="images/green.png" *ngIf="chara > 0" />
-        <img src="images/red.png" *ngIf="chara == 0" />
+<div class="container">
+    <div class="pre-sign bg-success"></div>
+    <div *ngFor="#h of MySchedule.Hours; #i=index" class="sign bg-success" (click)="MySchedule.SelectColumn(i)">
+        {{ h }}
     </div>
+</div>
+<div *ngFor="#d of MySchedule.WeekDays; #i=index" class="container">
+    <div class="pre-sign bg-success" (click)="MySchedule.SelectRow(i)"><h5>{{ MySchedule.WeekDays[i] }}</h5></div>
+    <div *ngFor="#h of MySchedule.Hours; #j=index" [className]="MySchedule.WH[i*24+j].Work ? 'sign bg-info': 'sign bg-danger'"
+         (mousedown)="MySchedule.DragBegin(i, j);" (mouseup)="MySchedule.DragEnd(i, j);"></div>
+</div>
+<div class="container">
+    <h2 class="bg-success">Your total working hour in this week is {{ MySchedule.TotalHours }} hours.</h2>
+    <h2 *ngIf="MySchedule.TotalHours < 40" class="bg-danger">You should work more.</h2>
+    <h2 *ngIf="MySchedule.TotalHours > 50" class="bg-danger">You should relax.</h2>
 </div>

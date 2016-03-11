@@ -1,5 +1,7 @@
 import {Component} from 'angular2/core';
+import {NgClass} from 'angular2/common';
 import {Schedule} from './schedule.component';
+
 
 @Component({
     selector: 'my-app',
@@ -7,14 +9,6 @@ import {Schedule} from './schedule.component';
 })
 
 export class AppComponent {
-    public title = 'Tour of Heroes';
-    public MySchedule : Schedule = new Schedule([
-        "123456789012345678901234",
-        "123456789012345678901234",
-        "123456789012345678901234",
-        "123456789012345678901234",
-        "123456789012345678901234",
-        "123456789012345678901234",
-        "123456789012345678901234"]);
+    public MySchedule : Schedule = new Schedule();
 }
 

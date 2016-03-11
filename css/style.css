@@ -1,13 +1,18 @@
-img
+.pre-sign, .sign
 {
-    height: 40px;
-    width: 40px;
+    height: 2em;
+    float: left;
+    border: 1px solid #0b97c4;
+    cursor: hand;
+}
+
+.pre-sign
+{
+    width: 28%;
 }
 
 .sign
 {
-    width: 40px;
-    height: 40px;
-    display: inline-block;
-    border: 1px solid #0b97c4;
+    width: 3%;
+    text-align: center;
 }
