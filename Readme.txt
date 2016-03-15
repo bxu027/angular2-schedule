@@ -1,0 +1,1 @@
+It is my first own angular 2 project. Try to thinking in angular 2 way.

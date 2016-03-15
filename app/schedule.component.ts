@@ -1,3 +1,4 @@
+
 export class WHour{
     Day: number;
     Hour: number;
