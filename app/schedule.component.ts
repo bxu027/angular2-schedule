@@ -19,7 +19,7 @@ export class Point{
 
 export class Schedule {
     public WH : WHour[];
-    private Hours : number[] = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
+    public Hours : number[] = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
     public WeekDays: string[] = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
     public BeginPoint : Point;
     public EndPoint: Point;
@@ -36,7 +36,7 @@ export class Schedule {
 
     constructor() {
         this.WH = [];
-         for(var day : number = 0; day < this.WeekDays.length; day++){
+        for(var day : number = 0; day < this.WeekDays.length; day++){
             for (var hour of this.Hours) {
                 if (day >= 5 || (day <5 && hour < 9) || (day < 5 && hour >= 17)){
                     this.WH.push(new WHour(day, hour, false));
@@ -83,7 +83,4 @@ export class Schedule {
             }
         }
     }
-
-
-
 }

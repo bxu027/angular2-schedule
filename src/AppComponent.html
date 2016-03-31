@@ -1,16 +1,29 @@
-<div class="container">
+<div *ngIf="!HttpLoading" class="container-fluid col-md-6 col-md-offset-3">
+<div class="row">
     <div class="pre-sign bg-success"></div>
-    <div *ngFor="#h of MySchedule.Hours; #i=index" class="sign bg-success" (click)="MySchedule.SelectColumn(i)">
-        {{ h }}
+    <div *ngFor="#h of MySchedule.Hours; #i = index" class="sign bg-success" (click)="MySchedule.SelectColumn(i)">
+        <h5>{{ h }}</h5>
     </div>
 </div>
-<div *ngFor="#d of MySchedule.WeekDays; #i=index" class="container">
+<div *ngFor="#d of MySchedule.WeekDays; #i=index" class="row">
     <div class="pre-sign bg-success" (click)="MySchedule.SelectRow(i)"><h5>{{ MySchedule.WeekDays[i] }}</h5></div>
     <div *ngFor="#h of MySchedule.Hours; #j=index" [className]="MySchedule.WH[i*24+j].Work ? 'sign bg-info': 'sign bg-danger'"
          (mousedown)="MySchedule.DragBegin(i, j);" (mouseup)="MySchedule.DragEnd(i, j);"></div>
 </div>
-<div class="container">
-    <h2 class="bg-success">Your total working hour in this week is {{ MySchedule.TotalHours }} hours.</h2>
-    <h2 *ngIf="MySchedule.TotalHours < 40" class="bg-danger">You should work more.</h2>
-    <h2 *ngIf="MySchedule.TotalHours > 50" class="bg-danger">You should relax.</h2>
+<div class="row" [class.bg-danger]="MySchedule.TotalHours > 50 || MySchedule.TotalHours < 40"
+    [class.bg-success]="MySchedule.TotalHours <= 50 || MySchedule.TotalHours >= 40">
+    <h2 class="control-label">Your total working hour in this week is {{ MySchedule.TotalHours }} hours.</h2>
+    <h2>{{ MySchedule.TotalHours < 40 ? "You should work more hours." : "" }}
+        {{MySchedule.TotalHours > 50 ? "You should relax." : "" }}</h2>
+</div>
+</div>
+<div *ngIf="HttpLoading" class="container-fluid col-md-6 col-md-offset-3"><progress></progress></div>
+<div class="container-fluid col-md-4 col-md-offset-4">
+    <button type="button" class="btn btn-default btn-md btn-block" (click)="GetSchedule()">
+        {{ !HttpLoading ? "Load" : "Loading" }}
+    </button>
+    <button type="button" class="btn btn-default btn-md btn-block" (click)="ResetSchedule()">Reset</button>
+    <button type="button" class="btn btn-default btn-md btn-block" (click)="SaveSchedule()">
+        {{ !HttpSaving ? "Save" : "Saving" }}
+    </button>
 </div>

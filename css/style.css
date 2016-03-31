@@ -16,3 +16,16 @@
     width: 3%;
     text-align: center;
 }
+
+.container-fluid
+{
+    margin-top: 1em;
+    text-align: center;
+}
+
+progress {
+    height: 1.5em;
+    width: 20em;
+    animation: expand 1.2s infinite ease-in-out;
+    animation-delay: -0.32s;
+}
